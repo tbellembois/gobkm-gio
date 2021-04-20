@@ -1,14 +1,17 @@
 module github.com/tbellembois/gobkm-gio
 
-go 1.15
+go 1.16
 
 require (
-	gioui.org v0.0.0-20210107085146-b430786f9b58
-	gioui.org/cmd v0.0.0-20210107085146-b430786f9b58 // indirect
+	gioui.org v0.0.0-20210420083910-22f16d7b0245
+	gioui.org/cmd v0.0.0-20210420083910-22f16d7b0245 // indirect
+	github.com/akavel/rsrc v0.10.2 // indirect
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/tbellembois/gobkm v0.0.0-20200628163923-f71dbe6248e9
-	golang.org/x/exp v0.0.0-20201229011636-eab1b5eb1a03
-	golang.org/x/image v0.0.0-20201208152932-35266b937fa6 // indirect
-	golang.org/x/sys v0.0.0-20210105210732-16f7687f5001 // indirect
-	golang.org/x/text v0.3.4 // indirect
+	golang.org/x/exp v0.0.0-20210417010653-0739314eea07
+	golang.org/x/image v0.0.0-20210220032944-ac19c3e999fb // indirect
+	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c // indirect
+	golang.org/x/sys v0.0.0-20210420072515-93ed5bcd2bfe // indirect
+	golang.org/x/text v0.3.6 // indirect
+	golang.org/x/tools v0.1.0 // indirect
 )
