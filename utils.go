@@ -7,6 +7,7 @@ import (
 	"os"
 	"os/exec"
 	"runtime"
+	"syscall/js"
 )
 
 // isValidUrl tests a string to determine if it is a well-structured url or not.
@@ -28,14 +29,16 @@ func openURL(url string) error {
 	var cmd *exec.Cmd
 	ros := runtime.GOOS
 	switch ros {
-	case "windows":
-	case "darwin":
+	case "js":
+		js.Global().Get("window").Call("open", url)
+		return nil
 	case "linux":
 		cmd = exec.Command("xdg-open", url)
 	case "android":
 		cmd = exec.Command("/system/bin/am", "start", "-a", "android.intent.action.VIEW", "--user", "0", "-d", url)
 	default:
-		fmt.Printf("%s.\n", ros)
+		fmt.Printf("ros: %s.\n", ros)
+		return nil
 	}
 
 	cmd.Stdin, cmd.Stdout, cmd.Stderr = os.Stdin, os.Stdout, os.Stderr

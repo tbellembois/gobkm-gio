@@ -554,7 +554,7 @@ func displayCurrentFolderSubfolders(gtx layout.Context, i int) D {
 					}
 
 					if !isInHistory {
-						if len(history) >= globals.HistorySize {
+						if len(history) > 0 && len(history) >= globals.HistorySize {
 							history = history[1:]
 						}
 						history = append(history, *currentFolder.Folders[i])
