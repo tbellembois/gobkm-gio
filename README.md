@@ -2,6 +2,12 @@
 
 ![screenshot](screenshot.png)
 
+## WASM compilation
+
+```bash
+    GOOS=js GOARCH=wasm go build -o main.wasm
+```
+
 ## Android compilation
 
 ```bash

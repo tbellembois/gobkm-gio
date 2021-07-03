@@ -63,7 +63,7 @@ func (b iconAndTextButton) Layout(gtx layout.Context, button *widget.Clickable, 
 			layIcon := layout.Rigid(func(gtx C) D {
 				return layout.Inset{Right: textIconSpacer}.Layout(gtx, func(gtx C) D {
 					if icon != nil {
-						return icon.Layout(gtx, unit.Dp(20))
+						return icon.Layout(gtx)
 					}
 					return D{}
 				})

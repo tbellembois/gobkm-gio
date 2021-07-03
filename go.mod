@@ -3,7 +3,7 @@ module github.com/tbellembois/gobkm-gio
 go 1.16
 
 require (
-	gioui.org v0.0.0-20210420083910-22f16d7b0245
+	gioui.org v0.0.0-20210701111508-2e991f31be10
 	gioui.org/cmd v0.0.0-20210420083910-22f16d7b0245 // indirect
 	github.com/akavel/rsrc v0.10.2 // indirect
 	github.com/mitchellh/go-homedir v1.1.0

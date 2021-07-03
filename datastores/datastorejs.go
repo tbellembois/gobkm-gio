@@ -3,6 +3,7 @@
 package datastores
 
 import (
+	"fmt"
 	"regexp"
 	"strconv"
 	"strings"
@@ -59,9 +60,9 @@ func (cd *cookiedatastore) LoadPreferences() (Preferences, error) {
 
 	c := js.Global().Get("document").Get("cookie").String()
 
-	reurl := regexp.MustCompile(cd.CServerURL + `=(\S+);{0,1}`)
-	reusername := regexp.MustCompile(cd.CServerUsername + `=(\S+);{0,1}`)
-	rehistory := regexp.MustCompile(cd.CHistorySize + `=(\d+);{0,1}`)
+	reurl := regexp.MustCompile(`serverURL=(\S+);{0,1}`)
+	reusername := regexp.MustCompile(`username=(\S+);{0,1}`)
+	rehistory := regexp.MustCompile(`historySize=(\d+);{0,1}`)
 
 	if f := reurl.FindStringSubmatch(c); f != nil {
 		p.ServerURL = strings.TrimSuffix(f[1], ";")
@@ -83,9 +84,9 @@ func (cd *cookiedatastore) LoadPreferences() (Preferences, error) {
 
 func (cd *cookiedatastore) SavePreferences(p Preferences) error {
 
-	js.Global().Get("document").Set("cookie", cd.CServerURL+"="+p.ServerURL)
-	js.Global().Get("document").Set("cookie", cd.CServerUsername+"="+p.ServerUsername)
-	js.Global().Get("document").Set("cookie", cd.CHistorySize+"="+strconv.Itoa(p.HistorySize))
+	cookie := fmt.Sprintf("serverURL=%s; username=%s; historySize=%s", p.ServerURL, p.ServerUsername, strconv.Itoa(p.HistorySize))
+
+	js.Global().Get("document").Set("cookie", cookie)
 
 	return nil
 

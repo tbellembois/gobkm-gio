@@ -3,6 +3,8 @@ dmitri.shuralyov.com/gpu/mtl v0.0.0-20201218220906-28db891af037/go.mod h1:H6x//7
 gioui.org v0.0.0-20210306132744-26d9e7fe5f05/go.mod h1:RSH6KIUZ0p2xy5zHDxgAM4zumjgTw83q2ge/PI+yyw8=
 gioui.org v0.0.0-20210420083910-22f16d7b0245 h1:+DIw6sbjqrbkn+8jyAGEdQYwygh7Mw7kB7bkWiRVtK8=
 gioui.org v0.0.0-20210420083910-22f16d7b0245/go.mod h1:RSH6KIUZ0p2xy5zHDxgAM4zumjgTw83q2ge/PI+yyw8=
+gioui.org v0.0.0-20210701111508-2e991f31be10 h1:qUMsIAc2HDpQ5DwuJpipVsx3RKcJ/jnzq0EdQsLXNnA=
+gioui.org v0.0.0-20210701111508-2e991f31be10/go.mod h1:RSH6KIUZ0p2xy5zHDxgAM4zumjgTw83q2ge/PI+yyw8=
 gioui.org/cmd v0.0.0-20210420083910-22f16d7b0245 h1:UN69WLR2IUiQr0D5xETF0CfOxeC5LaaG816pNm56N3g=
 gioui.org/cmd v0.0.0-20210420083910-22f16d7b0245/go.mod h1:eCa1TPjrHBwcRm7cGK4XPE9oBkGA7uebIRatbMOD7V4=
 github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym/WlBOVXweHU+Q+/VP0lqqI8lqeDx9IjBqo=
