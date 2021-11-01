@@ -24,18 +24,24 @@ type textButton struct {
 	theme *material.Theme
 }
 
-func (b textButton) Layout(gtx layout.Context, button *widget.Clickable, color color.NRGBA, word string) D {
+func (b textButton) Layout(gtx layout.Context, button *widget.Clickable, col color.NRGBA, word string) D {
+
 	l := material.ButtonLayout(b.theme, button)
-	l.Background = color
+	l.Background = col
+
 	return l.Layout(gtx, func(gtx C) D {
 
 		return layout.UniformInset(unit.Dp(12)).Layout(gtx, func(gtx C) D {
 
-			b.theme.Palette.Bg = color
+			b.theme.Palette.Bg = col
 			iconAndLabel := layout.Flex{Axis: layout.Horizontal}
 
 			layLabel := layout.Rigid(func(gtx C) D {
-				return widget.Label{}.Layout(gtx, b.theme.Shaper, text.Font{}, b.theme.TextSize, word)
+				return layout.Inset{Left: unit.Dp(0)}.Layout(gtx, func(gtx C) D {
+					l := material.Body1(b.theme, word)
+					l.Color = b.theme.Palette.Fg
+					return l.Layout(gtx)
+				})
 			})
 
 			return iconAndLabel.Layout(gtx, layLabel)
@@ -44,9 +50,10 @@ func (b textButton) Layout(gtx layout.Context, button *widget.Clickable, color c
 	})
 }
 
-func (b iconAndTextButton) Layout(gtx layout.Context, button *widget.Clickable, icon *widget.Icon, color color.NRGBA, word string) D {
+func (b iconAndTextButton) Layout(gtx layout.Context, button *widget.Clickable, icon *widget.Icon, col color.NRGBA, word string) D {
+
 	l := material.ButtonLayout(b.theme, button)
-	l.Background = color
+	l.Background = col
 
 	return l.Layout(gtx, func(gtx C) D {
 
@@ -63,15 +70,17 @@ func (b iconAndTextButton) Layout(gtx layout.Context, button *widget.Clickable, 
 			layIcon := layout.Rigid(func(gtx C) D {
 				return layout.Inset{Right: textIconSpacer}.Layout(gtx, func(gtx C) D {
 					if icon != nil {
-						return icon.Layout(gtx)
+						return icon.Layout(gtx, color.NRGBA{0, 0, 0, 0xff})
 					}
 					return D{}
 				})
 			})
 
 			layLabel := layout.Rigid(func(gtx C) D {
-				return layout.Inset{Left: textIconSpacer}.Layout(gtx, func(gtx C) D {
-					return widget.Label{}.Layout(gtx, b.theme.Shaper, text.Font{}, b.theme.TextSize, word)
+				return layout.Inset{Left: unit.Dp(0)}.Layout(gtx, func(gtx C) D {
+					l := material.Body1(b.theme, word)
+					l.Color = b.theme.Palette.Fg
+					return l.Layout(gtx)
 				})
 			})
 
@@ -81,9 +90,10 @@ func (b iconAndTextButton) Layout(gtx layout.Context, button *widget.Clickable, 
 	})
 }
 
-func (b imageAndTextButton) Layout(gtx layout.Context, button *widget.Clickable, image *paint.ImageOp, color color.NRGBA, word string) D {
+func (b imageAndTextButton) Layout(gtx layout.Context, button *widget.Clickable, image *paint.ImageOp, col color.NRGBA, word string) D {
+
 	l := material.ButtonLayout(b.theme, button)
-	l.Background = color
+	l.Background = col
 
 	return l.Layout(gtx, func(gtx C) D {
 
@@ -107,8 +117,10 @@ func (b imageAndTextButton) Layout(gtx layout.Context, button *widget.Clickable,
 			})
 
 			layLabel := layout.Rigid(func(gtx C) D {
-				return layout.Inset{Left: textIconSpacer}.Layout(gtx, func(gtx C) D {
-					return widget.Label{}.Layout(gtx, b.theme.Shaper, text.Font{}, b.theme.TextSize, word)
+				return layout.Inset{Left: unit.Dp(0)}.Layout(gtx, func(gtx C) D {
+					l := material.Body1(b.theme, word)
+					l.Color = b.theme.Palette.Fg
+					return l.Layout(gtx)
 				})
 			})
 
@@ -118,9 +130,10 @@ func (b imageAndTextButton) Layout(gtx layout.Context, button *widget.Clickable,
 	})
 }
 
-func (b imageAndTextAndTagsButton) Layout(gtx layout.Context, button *widget.Clickable, image *paint.ImageOp, color color.NRGBA, word string, tags []string) D {
+func (b imageAndTextAndTagsButton) Layout(gtx layout.Context, button *widget.Clickable, image *paint.ImageOp, col color.NRGBA, word string, tags []string) D {
+
 	l := material.ButtonLayout(b.theme, button)
-	l.Background = color
+	l.Background = col
 
 	return l.Layout(gtx, func(gtx C) D {
 
@@ -153,8 +166,10 @@ func (b imageAndTextAndTagsButton) Layout(gtx layout.Context, button *widget.Cli
 			})
 
 			layLabel := layout.Rigid(func(gtx C) D {
-				return layout.Inset{Left: textIconSpacer}.Layout(gtx, func(gtx C) D {
-					return widget.Label{}.Layout(gtx, b.theme.Shaper, text.Font{}, b.theme.TextSize, word)
+				return layout.Inset{Left: unit.Dp(0)}.Layout(gtx, func(gtx C) D {
+					l := material.Body1(b.theme, word)
+					l.Color = b.theme.Palette.Fg
+					return l.Layout(gtx)
 				})
 			})
 
