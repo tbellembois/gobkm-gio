@@ -1,4 +1,4 @@
-// +build js
+//go:build js && wasm
 
 package datastores
 
@@ -8,6 +8,7 @@ import (
 	"strconv"
 	"strings"
 	"syscall/js"
+	"time"
 
 	"github.com/tbellembois/gobkm-gio/globals"
 )
@@ -84,8 +85,13 @@ func (cd *cookiedatastore) LoadPreferences() (Preferences, error) {
 
 func (cd *cookiedatastore) SavePreferences(p Preferences) error {
 
-	cookie := fmt.Sprintf("serverURL=%s; username=%s; historySize=%s", p.ServerURL, p.ServerUsername, strconv.Itoa(p.HistorySize))
+	expires := time.Now().Local().AddDate(1, 0, 0).Format("Mon, 02-Jan-2006 15:04:05 MST")
 
+	cookie := fmt.Sprintf("serverURL=%s; expires=%v; SameSite=None; Secure", p.ServerURL, expires)
+	js.Global().Get("document").Set("cookie", cookie)
+	cookie = fmt.Sprintf("username=%s; expires=%v; SameSite=None; Secure", p.ServerUsername, expires)
+	js.Global().Get("document").Set("cookie", cookie)
+	cookie = fmt.Sprintf("historySize=%s; expires=%v; SameSite=None; Secure", strconv.Itoa(p.HistorySize), expires)
 	js.Global().Get("document").Set("cookie", cookie)
 
 	return nil
